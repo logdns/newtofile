@@ -33,7 +33,9 @@ on a best-effort basis and coordinate disclosure after remediation.
 
 ## Distribution Limits
 
-Current public preview packages are ad-hoc signed and **not Apple notarized**.
+v0.2.2 previews use a dedicated NewToFile self-signed code-signing certificate;
+v0.2.1 uses ad-hoc signing. Both are **not Apple notarized**. The self-signed
+certificate is not an Apple Developer ID or a system-trusted publisher identity.
 Gatekeeper may block them and Finder extension registration may differ across
 systems. Checksums detect transfer corruption; they are not an independent
 publisher identity. Prefer a source build if this distribution model does not
@@ -41,3 +43,7 @@ meet your security requirements. Never disable Gatekeeper globally.
 
 See [audit scope and limits](docs/security-audit.md). A source review and passing
 tests do not guarantee absence of vulnerabilities or clean-machine compatibility.
+
+The public signing certificate and fingerprint are documented in
+[Self-Signing](docs/self-signing.md). Private keys/passwords are never shipped.
+Do not import the certificate as a trusted root merely to install this preview.

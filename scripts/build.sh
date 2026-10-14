@@ -10,6 +10,9 @@ EXT="$APP/Contents/PlugIns/NewToFileFinder.appex"
 SDK="$(xcrun --sdk macosx --show-sdk-path)"
 ARCH="${ARCH:-$(uname -m)}"
 SIGN_IDENTITY="${SIGN_IDENTITY:--}"
+SIGN_ARGS=(--force --sign "$SIGN_IDENTITY" --options runtime)
+if [[ -n "${SIGN_KEYCHAIN:-}" ]]; then SIGN_ARGS+=(--keychain "$SIGN_KEYCHAIN"); fi
+if [[ -n "${SIGN_TIMESTAMP:-}" ]]; then SIGN_ARGS+=(--timestamp="$SIGN_TIMESTAMP"); fi
 case "$ARCH" in
     arm64) GOARCH=arm64 ;;
     x86_64) GOARCH=amd64 ;;
@@ -44,9 +47,9 @@ xcrun swiftc "${COMMON[@]}" -module-name NewToFileFinder \
     -framework Cocoa -framework FinderSync -Xlinker -e -Xlinker _NSExtensionMain \
     -o "$EXT/Contents/MacOS/NewToFileFinder"
 
-codesign --force --sign "$SIGN_IDENTITY" --options runtime \
+codesign "${SIGN_ARGS[@]}" \
     --entitlements Resources/Finder.entitlements "$EXT"
-codesign --force --sign "$SIGN_IDENTITY" --options runtime "$APP/Contents/MacOS/NewToFileBridge"
-codesign --force --sign "$SIGN_IDENTITY" --options runtime "$APP"
+codesign "${SIGN_ARGS[@]}" "$APP/Contents/MacOS/NewToFileBridge"
+codesign "${SIGN_ARGS[@]}" "$APP"
 codesign --verify --deep --strict "$APP"
 echo "Built: $APP"

@@ -1,4 +1,4 @@
-# NewToFile Security Review — 2026-10-14
+# NewToFile v0.2.1 Security Review — 2026-10-14
 
 ## Scope and Result
 

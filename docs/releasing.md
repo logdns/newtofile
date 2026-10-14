@@ -40,13 +40,13 @@ cd dist
 shasum -a 256 -c SHA256SUMS.txt
 ```
 
-The script builds separate `build/arm64/NewToFile.app` and
-`build/x86_64/NewToFile.app`, then creates architecture-specific ZIP and DMG
+The script builds separate `build/release-VERSION.RANDOM/arm64/NewToFile.app` and
+`build/release-VERSION.RANDOM/x86_64/NewToFile.app`, then creates architecture-specific ZIP and DMG
 files in `dist/`. These are separate packages, not a universal binary.
 Building Intel on Apple Silicon does not prove Intel runtime compatibility.
 
-Use fresh per-architecture output directories for a release, since the build
-script reuses an existing bundle. Record toolchain versions and the exact source
+The package script allocates fresh per-release/per-architecture output directories.
+The lower-level build script still reuses a caller-specified existing bundle. Record toolchain versions and the exact source
 commit alongside final package digests in the release manifest.
 Verify all three Mach-O executables with `file` and `lipo -archs`, and verify
 each bundle with `codesign --verify --deep --strict`.
@@ -75,3 +75,28 @@ Attach ZIPs, DMGs, and `SHA256SUMS.txt`; GitHub supplies source archives.
 Use a pre-release for unnotarized preview builds and state known validation gaps.
 Do not reuse a published version/tag for different binaries. Download the
 uploaded assets into a disposable directory and verify their checksums.
+
+## Certificate Self-Signing
+
+Use your own dedicated local code-signing identity, never another project's identity:
+
+```sh
+SIGN_IDENTITY=YOUR_CERTIFICATE_SHA1 \
+SIGN_KEYCHAIN="$HOME/Library/Application Support/NewToFile/Signing/NewToFile-Release.keychain-db" \
+SIGN_TIMESTAMP=none DIST_DIR=dist/0.2.2 ./scripts/package.sh
+```
+
+The keychain must be unlocked by its owner. Do not store the keychain password,
+private key or PKCS#12 export in the repository or release. The script signs
+the extension, helper, app and final DMGs, then computes checksums after signing.
+Self-signatures validate byte integrity, not Apple trust. This is still a preview.
+See [certificate policy](self-signing.md).
+
+Verify a certificate-signed release with:
+
+```sh
+python3 scripts/verify_release.py --app PATH_TO_APP --arch arm64 \
+  --version 0.2.2 --certificate docs/signing/NewToFile-SelfSigned.pem \
+  --dmg dist/0.2.2/NewToFile-0.2.2-arm64.dmg
+NEWTOFILE_APP=PATH_TO_APP python3 scripts/test_app.py
+```

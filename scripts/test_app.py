@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Exercise the packaged Go-to-Swift file service without touching user folders."""
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parent.parent
-HELPER = ROOT / "build/NewToFile.app/Contents/MacOS/NewToFileBridge"
+APP = Path(os.environ.get("NEWTOFILE_APP", ROOT / "build/NewToFile.app"))
+HELPER = APP / "Contents/MacOS/NewToFileBridge"
 
 
 def call(**request):
