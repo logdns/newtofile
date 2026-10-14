@@ -24,6 +24,14 @@ The MyGo tester validates rendered content, not the live AppKit compositor.
 Manually check Finder integration, privacy-denied folders, removable drives,
 Chinese input, and actual Office/WPS opening before declaring production-ready.
 
+For an externally sandboxed test run, set `NEWTOFILE_TEST_TMPDIR` to an allowed
+disposable directory; Swift's Foundation temporary directory may ignore `TMPDIR`.
+Swift 6.4's default SwiftBuild engine may request large sparse cache files; when
+a file-size-limited validation environment blocks it, use
+`swift test --build-system native` while that fallback is supported. If an outer
+OS sandbox is already enforced, `--disable-sandbox` disables only SwiftPM's nested
+sandbox, not the outer policy. Do not disable isolation to validate untrusted code.
+
 ## Packages
 
 ```sh
@@ -36,6 +44,10 @@ The script builds separate `build/arm64/NewToFile.app` and
 `build/x86_64/NewToFile.app`, then creates architecture-specific ZIP and DMG
 files in `dist/`. These are separate packages, not a universal binary.
 Building Intel on Apple Silicon does not prove Intel runtime compatibility.
+
+Use fresh per-architecture output directories for a release, since the build
+script reuses an existing bundle. Record toolchain versions and the exact source
+commit alongside final package digests in the release manifest.
 Verify all three Mach-O executables with `file` and `lipo -archs`, and verify
 each bundle with `codesign --verify --deep --strict`.
 

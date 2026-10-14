@@ -9,6 +9,11 @@ and a bundled Swift helper performs file creation.
 
 ## Features
 
+![Light appearance rendered preview](docs/screenshots/light.png)
+
+[Dark appearance](docs/screenshots/dark.png) · [Explicit light settings](docs/screenshots/settings-light.png).
+Native-renderer previews use sanitized paths and omit AppKit window chrome.
+
 - Create TXT, Markdown, RTF, JSON, CSV and HTML in a selected folder.
 - Detect installed Word, Excel, PowerPoint or WPS and enable the corresponding
   DOCX, XLSX and PPTX formats. Office documents use actual OOXML templates.
@@ -91,3 +96,5 @@ the app. Optionally remove that preferences directory; keep created documents.
 [MIT](LICENSE), copyright logdns. Bundled dependency notices are preserved in
 `Resources/ThirdParty`. See [CONTRIBUTING](CONTRIBUTING.md), [CHANGELOG](CHANGELOG.md),
 [security review](docs/security-audit.md) and [SECURITY](SECURITY.md).
+
+[Version 0.2.1 validation record](docs/validation.md)

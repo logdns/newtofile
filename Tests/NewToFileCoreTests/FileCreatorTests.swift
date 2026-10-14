@@ -7,7 +7,10 @@ final class FileCreatorTests: XCTestCase {
     private var creator: FileCreator!
 
     override func setUpWithError() throws {
-        directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        let testRoot = ProcessInfo.processInfo.environment["NEWTOFILE_TEST_TMPDIR"]
+            .map { URL(fileURLWithPath: $0, isDirectory: true) }
+            ?? FileManager.default.temporaryDirectory
+        directory = testRoot.appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         templates = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent().appendingPathComponent("Resources/Templates", isDirectory: true)
@@ -15,7 +18,9 @@ final class FileCreatorTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        try FileManager.default.removeItem(at: directory)
+        if let directory, FileManager.default.fileExists(atPath: directory.path) {
+            try FileManager.default.removeItem(at: directory)
+        }
     }
 
     func testPlainTextIsEmptyAndHasCorrectExtension() throws {

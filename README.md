@@ -10,6 +10,12 @@
 
 ## 原生界面
 
+![浅色界面原生渲染预览](docs/screenshots/light.png)
+
+[深色预览](docs/screenshots/dark.png) · [修复后的浅色设置页](docs/screenshots/settings-light.png)
+
+以上由 MyGo 原生渲染器生成，路径已脱敏，不包含 AppKit 窗口边框。
+
 - 隐藏式标题栏保留系统红黄绿窗口按钮；可拖动标题栏和侧栏上方移动窗口。
 - 跟随系统时使用 Vibrancy 半透明侧栏；手动指定浅色/深色时使用匹配外观的实色侧栏，避免材质与文字混色。按「全部格式 / 文本与代码 / 办公文档」分类。
 - 桌面、文稿、下载快捷入口，使用系统原生文件夹选择面板。
@@ -130,3 +136,5 @@ Finder 扩展在沙盒中运行，只负责菜单和路径；通过 `newtofile:/
 - 漏洞反馈与权限边界：[SECURITY.md](SECURITY.md)。
 - 本次审计范围、结果与限制：[安全审计记录](docs/security-audit.md)。
 - 卸载：先禁用 Finder 扩展、退出菜单栏 App，再移除应用；如不需要保留偏好，可删除 `~/Library/Application Support/NewToFile/`。不要删除你创建的文档。
+
+[Version 0.2.1 validation record](docs/validation.md)
