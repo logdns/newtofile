@@ -32,6 +32,13 @@ Requires macOS 13+. Choose the `arm64` package for Apple Silicon or `x86_64`
 for Intel from [Releases](https://github.com/logdns/newtofile/releases).
 Verify downloaded assets with the release's `SHA256SUMS.txt`.
 
+See the illustrated Chinese guides for [first-launch troubleshooting (two methods)](README.md#macos-首次打不开两种解决方法)
+and [enabling the Finder context-menu extension](README.md#启用-finder-右键扩展图文).
+System Settings labels vary: the supplied screenshot shows a File Provider
+switch under NewToFile. Enable the entry belonging to NewToFile and verify the
+context menu; the implementation uses Finder Sync. Screenshot sources and
+limitations are documented in [the image index](docs/screenshots/README.md).
+
 **v0.2.2 packages are certificate-self-signed, not Apple notarized, and are previews.**
 The older v0.2.1 uses ad-hoc signing; neither establishes Apple publisher trust.
 Gatekeeper may block launch; extension activation varies by macOS/signing state.
@@ -40,7 +47,8 @@ option for a trusted download; do not globally disable Gatekeeper. Intel builds
 are cross-compiled and still require native Intel acceptance testing.
 
 Move the app to Applications and open it once. Enable NewToFile under System
-Settings > General > Login Items & Extensions > Finder (macOS 15+), or Privacy
+Settings > General > Login Items & Extensions (macOS 15+, locate the NewToFile
+entry; category labels vary), or Privacy
 & Security > Extensions > Finder Extensions (macOS 13/14). Right-click an empty
 area of the desktop or Finder and choose New File. The interface is currently
 Chinese. `Cmd+Return` creates a file; `Cmd+,` opens preferences.
