@@ -1,6 +1,6 @@
 # NewToFile
 
-[中文](README.md) · [Preview Downloads](https://github.com/logdns/newtofile/releases)
+[中文](README.md) · [Preview Downloads](https://github.com/logdns/newtofile/releases) · [GitHub](https://github.com/logdns/newtofile) · [Website](https://www.xinai.de/)
 
 A small native macOS utility for creating files from Finder or the desktop.
 The Go interface uses [MyGo 0.4.8](https://mygo.egoist.dev/docs/ui), Metal and
@@ -39,7 +39,7 @@ switch under NewToFile. Enable the entry belonging to NewToFile and verify the
 context menu; the implementation uses Finder Sync. Screenshot sources and
 limitations are documented in [the image index](docs/screenshots/README.md).
 
-**v0.2.2 packages are certificate-self-signed, not Apple notarized, and are previews.**
+**v0.2.3 packages are certificate-self-signed, not Apple notarized, and are previews.**
 The older v0.2.1 uses ad-hoc signing; neither establishes Apple publisher trust.
 Gatekeeper may block launch; extension activation varies by macOS/signing state.
 Prefer building from source if needed. Only use the system's per-app Open Anyway
@@ -108,4 +108,4 @@ the app. Optionally remove that preferences directory; keep created documents.
 
 [Version 0.2.1 validation record](docs/validation.md)
 
-[Self-signing policy and fingerprint](docs/self-signing.md) · [v0.2.2 validation](docs/validation-0.2.2.md)
+[Self-signing policy and fingerprint](docs/self-signing.md) · [v0.2.3 validation](docs/validation-0.2.3.md)

@@ -4,9 +4,9 @@
 
 在 Finder 文件夹或桌面的右键菜单里选择「新建文件」，输入名称后创建文件；也可以从菜单栏入口选择任意文件夹。
 
-[English](README.en.md) · [下载预览版](https://github.com/logdns/newtofile/releases) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载预览版](https://github.com/logdns/newtofile/releases) · [GitHub](https://github.com/logdns/newtofile) · [官方网站](https://www.xinai.de/) · [更新记录](CHANGELOG.md)
 
-> v0.2.2 公开包使用 NewToFile 独立证书自签名，仍为未公证预览版。请阅读安装限制，勿关闭系统安全保护。
+> v0.2.3 公开包使用 NewToFile 独立证书自签名，仍为未公证预览版。请阅读安装限制，勿关闭系统安全保护。
 
 [首次打不开？两种解决方法](#macos-首次打不开两种解决方法) · [启用 Finder 右键扩展（图文）](#启用-finder-右键扩展图文)
 
@@ -152,7 +152,7 @@ python3 scripts/test_app.py
 
 ## 签名与分发
 
-GitHub Releases 提供 Apple Silicon / Intel 分开的 ZIP 和 DMG 预览包，以及 `SHA256SUMS.txt`。v0.2.2 产物为独立证书自签名（v0.2.1 为 ad-hoc），**尚未通过 Apple 公证**，不是生产就绪的正式安装包。Gatekeeper 可能阻止启动，Finder 扩展在部分系统上可能要求有效的开发签名。Intel 包为交叉构建，尚需 Intel 实机验收。
+GitHub Releases 提供 Apple Silicon / Intel 分开的 ZIP 和 DMG 预览包，以及 `SHA256SUMS.txt`。v0.2.3 产物为独立证书自签名（v0.2.1 为 ad-hoc），**尚未通过 Apple 公证**，不是生产就绪的正式安装包。Gatekeeper 可能阻止启动，Finder 扩展在部分系统上可能要求有效的开发签名。Intel 包为交叉构建，尚需 Intel 实机验收。
 
 下载与电脑架构匹配的包，将 App 拖入「应用程序」。可先运行 `shasum -a 256 -c SHA256SUMS.txt` 核对同目录下载的全部资产。若系统提示无法验证开发者，优先从源码构建；仅对确认来源的 App 使用系统设置提供的「仍要打开」操作。不同 macOS 版本对未公证 App 的限制不同，此操作不保证可用。**不要全局禁用 Gatekeeper，也不要对整个下载目录递归移除隔离标记。**
 
@@ -198,4 +198,4 @@ Finder 扩展在沙盒中运行，只负责菜单和路径；通过 `newtofile:/
 
 [Version 0.2.1 validation record](docs/validation.md)
 
-[自签名说明与证书指纹](docs/self-signing.md) · [v0.2.2 验证记录](docs/validation-0.2.2.md)
+[自签名说明与证书指纹](docs/self-signing.md) · [v0.2.3 验证记录](docs/validation-0.2.3.md)

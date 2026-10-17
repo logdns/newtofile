@@ -2,6 +2,11 @@ package appui
 
 import "github.com/egoist/mygo/ui"
 
+const (
+	GitHubURL  = "https://github.com/logdns/newtofile"
+	WebsiteURL = "https://www.xinai.de/"
+)
+
 func (m *Model) settings(c *ui.Context) {
 	t := c.Theme()
 	ui.Scroll(c.Key("settings-scroll")).Grow(1).Padding(27, 28).Gap(24).Children(func() {
@@ -62,6 +67,26 @@ func (m *Model) settings(c *ui.Context) {
 				if ui.Button(c, "重新检测").FontSize(11).Disabled(m.Detecting).Clicked() && m.Actions.Refresh != nil {
 					m.Actions.Refresh()
 				}
+			})
+		})
+		ui.Column(c).Gap(11).Children(func() {
+			ui.Text(c, "关于").FontSize(12).FontWeight(600)
+			ui.Column(c).Padding(15).Gap(10).Radius(11).Background(panelColor(t)).Border(1, t.Border.Alpha(0.65)).Children(func() {
+				ui.Row(c).Gap(10).Children(func() {
+					ui.Box(c).Size(34, 34).Radius(9).Background(t.Accent.Alpha(0.09)).Center().Children(func() {
+						ui.Icon(c, documentIcon).FontSize(19).TextColor(t.Accent)
+					})
+					ui.Column(c).Gap(3).Grow(1).Children(func() {
+						ui.Text(c, "NewToFile").FontSize(13).FontWeight(600)
+						ui.Text(c, "原生 macOS 文件创建工具 · "+Version).FontSize(10).TextColor(t.TextMuted)
+					})
+				})
+				ui.Divider(c).Background(t.Border.Alpha(0.6))
+				ui.Row(c).Gap(14).Children(func() {
+					ui.Text(c, "项目链接").FontSize(11).TextColor(t.TextMuted)
+					ui.Link(c, "GitHub 项目", GitHubURL).FontSize(11).TextColor(t.Accent).Tooltip("打开 GitHub 项目主页")
+					ui.Link(c, "官方网站", WebsiteURL).FontSize(11).TextColor(t.Accent).Tooltip("打开 xinai.de 官方网站")
+				})
 			})
 		})
 		if m.Error != "" {

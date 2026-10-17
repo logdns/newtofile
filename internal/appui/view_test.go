@@ -125,6 +125,27 @@ func TestSettingsAppearanceAndPreferenceToggle(t *testing.T) {
 	}
 }
 
+func TestSettingsAboutLinks(t *testing.T) {
+	m := testModel()
+	tt := ui.NewTester(m.View, 820, 1200)
+	if err := tt.Click("设置与扩展"); err != nil {
+		t.Fatal(err)
+	}
+	if !tt.HasText("关于") || !tt.HasText("GitHub 项目") || !tt.HasText("官方网站") {
+		t.Fatalf("about links missing: %q", tt.Texts())
+	}
+	if err := tt.Click("GitHub 项目"); err != nil {
+		t.Fatal(err)
+	}
+	if err := tt.Click("官方网站"); err != nil {
+		t.Fatal(err)
+	}
+	want := []string{GitHubURL, WebsiteURL}
+	if got := tt.OpenedURLs(); !slices.Equal(got, want) {
+		t.Fatalf("opened URLs=%v, want %v", got, want)
+	}
+}
+
 func TestSidebarLocationChangesDestination(t *testing.T) {
 	m := testModel()
 	tt := ui.NewTester(m.View, 820, 740)

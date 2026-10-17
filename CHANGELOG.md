@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3 - 2026-10-17
+
+- Add a native About section with clickable GitHub project and official website links.
+- Add regression coverage for both external links and document the project URLs.
+
 ## 0.2.2 - 2026-10-14
 
 - Support a dedicated signing keychain and explicit timestamp policy.
