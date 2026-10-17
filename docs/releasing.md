@@ -86,6 +86,11 @@ SIGN_KEYCHAIN="$HOME/Library/Application Support/NewToFile/Signing/NewToFile-Rel
 SIGN_TIMESTAMP=none DIST_DIR=dist/0.2.2 ./scripts/package.sh
 ```
 
+Each self-signed release must use a fresh version-specific certificate identity;
+never reuse another project's identity or replace bytes under an existing tag.
+The v0.2.3 public certificate and fingerprint are documented separately in
+`docs/self-signing.md`.
+
 The keychain must be unlocked by its owner. Do not store the keychain password,
 private key or PKCS#12 export in the repository or release. The script signs
 the extension, helper, app and final DMGs, then computes checksums after signing.

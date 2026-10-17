@@ -39,8 +39,8 @@ switch under NewToFile. Enable the entry belonging to NewToFile and verify the
 context menu; the implementation uses Finder Sync. Screenshot sources and
 limitations are documented in [the image index](docs/screenshots/README.md).
 
-**v0.2.3 packages are certificate-self-signed, not Apple notarized, and are previews.**
-The older v0.2.1 uses ad-hoc signing; neither establishes Apple publisher trust.
+**v0.2.3 packages use a dedicated certificate-backed self-signature, are not Apple notarized, and remain previews.**
+The earlier v0.2.2 used a separate self-signed identity and v0.2.1 used ad-hoc signing; neither establishes Apple publisher trust.
 Gatekeeper may block launch; extension activation varies by macOS/signing state.
 Prefer building from source if needed. Only use the system's per-app Open Anyway
 option for a trusted download; do not globally disable Gatekeeper. Intel builds
