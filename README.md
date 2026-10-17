@@ -194,6 +194,7 @@ Finder 扩展在沙盒中运行，只负责菜单和路径；通过 `newtofile:/
 - 参与开发：[CONTRIBUTING.md](CONTRIBUTING.md)。
 - 漏洞反馈与权限边界：[SECURITY.md](SECURITY.md)。
 - 本次审计范围、结果与限制：[安全审计记录](docs/security-audit.md)。
+- v0.2.3 关于链接的限定范围源码审查：[审计记录](docs/security-review-0.2.3.md)。
 - 卸载：先禁用 Finder 扩展、退出菜单栏 App，再移除应用；如不需要保留偏好，可删除 `~/Library/Application Support/NewToFile/`。不要删除你创建的文档。
 
 [Version 0.2.1 validation record](docs/validation.md)

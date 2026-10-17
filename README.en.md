@@ -104,7 +104,8 @@ the app. Optionally remove that preferences directory; keep created documents.
 
 [MIT](LICENSE), copyright logdns. Bundled dependency notices are preserved in
 `Resources/ThirdParty`. See [CONTRIBUTING](CONTRIBUTING.md), [CHANGELOG](CHANGELOG.md),
-[security review](docs/security-audit.md) and [SECURITY](SECURITY.md).
+[security review](docs/security-audit.md), [v0.2.3 scoped review](docs/security-review-0.2.3.md),
+and [SECURITY](SECURITY.md).
 
 [Version 0.2.1 validation record](docs/validation.md)
 
