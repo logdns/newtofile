@@ -41,7 +41,7 @@ do {
               directory.hasPrefix("/"), !directory.contains("\0") else {
             throw CreationError.invalidName
         }
-        guard OfficeAvailability().availableKinds.contains(kind) else {
+        if kind.isOffice && !OfficeAvailability().availableKinds.contains(kind) {
             respond(HelperResponse(error: "未检测到对应的 Office / WPS，请刷新应用检测。"))
             exit(0)
         }

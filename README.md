@@ -6,7 +6,7 @@
 
 [English](README.en.md) · [下载预览版](https://github.com/logdns/newtofile/releases) · [GitHub](https://github.com/logdns/newtofile) · [官方网站](https://www.xinai.de/) · [更新记录](CHANGELOG.md)
 
-> v0.2.3 公开包使用 NewToFile 独立证书自签名，仍为未公证预览版。请阅读安装限制，勿关闭系统安全保护。
+> v0.2.4 公开包使用 NewToFile 独立证书自签名，仍为未公证预览版。请阅读安装限制，勿关闭系统安全保护。
 
 [首次打不开？两种解决方法](#macos-首次打不开两种解决方法) · [启用 Finder 右键扩展（图文）](#启用-finder-右键扩展图文)
 
@@ -118,7 +118,7 @@ open "/Applications/NewToFile.app"
 
 图片来源与验证边界见 [截图说明](docs/screenshots/README.md)。
 
-安装 Office / WPS 后点击格式区域的刷新按钮或「设置与扩展 → 重新检测」，并重新打开右键菜单。系统必须能够识别安装应用的 Bundle ID；压缩包内或没有启动注册过的应用可能检测不到。
+安装 Microsoft Office（含 Microsoft 365）或 WPS 后，点击格式区域的刷新按钮或「设置与扩展 → 重新检测」，并重新打开 Finder 右键菜单。Word、Excel、PowerPoint 分别启用 DOCX、XLSX、PPTX；WPS 启用全部三种格式。NewToFile 先查询 macOS 已注册的应用，再检查 `/Applications` 和 `~/Applications` 中标准名称的应用包及其 Bundle ID。若应用放在其他位置且未被系统识别，请先在 Finder 中打开该办公应用一次，再重新检测。
 
 偏好设置保存在 `~/Library/Application Support/NewToFile/preferences.json`。第一次升级到 MyGo 界面时，会读取旧版的保存位置和「创建后打开」偏好，不更改原偏好数据。
 
@@ -152,7 +152,7 @@ python3 scripts/test_app.py
 
 ## 签名与分发
 
-GitHub Releases 提供 Apple Silicon / Intel 分开的 ZIP 和 DMG 预览包，以及 `SHA256SUMS.txt`。v0.2.3 产物为独立证书自签名（v0.2.1 为 ad-hoc），**尚未通过 Apple 公证**，不是生产就绪的正式安装包。Gatekeeper 可能阻止启动，Finder 扩展在部分系统上可能要求有效的开发签名。Intel 包为交叉构建，尚需 Intel 实机验收。
+GitHub Releases 提供 Apple Silicon / Intel 分开的 ZIP 和 DMG 预览包，以及 `SHA256SUMS.txt`。v0.2.4 产物为独立证书自签名（v0.2.1 为 ad-hoc），**尚未通过 Apple 公证**，不是生产就绪的正式安装包。Gatekeeper 可能阻止启动，Finder 扩展在部分系统上可能要求有效的开发签名。Intel 包为交叉构建，尚需 Intel 实机验收。
 
 下载与电脑架构匹配的包，将 App 拖入「应用程序」。可先运行 `shasum -a 256 -c SHA256SUMS.txt` 核对同目录下载的全部资产。若系统提示无法验证开发者，优先从源码构建；仅对确认来源的 App 使用系统设置提供的「仍要打开」操作。不同 macOS 版本对未公证 App 的限制不同，此操作不保证可用。**不要全局禁用 Gatekeeper，也不要对整个下载目录递归移除隔离标记。**
 
@@ -195,8 +195,9 @@ Finder 扩展在沙盒中运行，只负责菜单和路径；通过 `newtofile:/
 - 漏洞反馈与权限边界：[SECURITY.md](SECURITY.md)。
 - 本次审计范围、结果与限制：[安全审计记录](docs/security-audit.md)。
 - v0.2.3 关于链接的限定范围源码审查：[审计记录](docs/security-review-0.2.3.md)。
+- v0.2.4 办公应用检测的限定范围源码审查：[审计记录](docs/security-review-0.2.4.md)。
 - 卸载：先禁用 Finder 扩展、退出菜单栏 App，再移除应用；如不需要保留偏好，可删除 `~/Library/Application Support/NewToFile/`。不要删除你创建的文档。
 
 [Version 0.2.1 validation record](docs/validation.md)
 
-[自签名说明与证书指纹](docs/self-signing.md) · [v0.2.3 验证记录](docs/validation-0.2.3.md)
+[自签名说明与证书指纹](docs/self-signing.md) · [v0.2.4 验证记录](docs/validation-0.2.4.md)

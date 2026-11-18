@@ -39,7 +39,7 @@ switch under NewToFile. Enable the entry belonging to NewToFile and verify the
 context menu; the implementation uses Finder Sync. Screenshot sources and
 limitations are documented in [the image index](docs/screenshots/README.md).
 
-**v0.2.3 packages use a dedicated certificate-backed self-signature, are not Apple notarized, and remain previews.**
+**v0.2.4 packages use a dedicated certificate-backed self-signature, are not Apple notarized, and remain previews.**
 The earlier v0.2.2 used a separate self-signed identity and v0.2.1 used ad-hoc signing; neither establishes Apple publisher trust.
 Gatekeeper may block launch; extension activation varies by macOS/signing state.
 Prefer building from source if needed. Only use the system's per-app Open Anyway
@@ -54,9 +54,11 @@ area of the desktop or Finder and choose New File. The interface is currently
 Chinese. `Cmd+Return` creates a file; `Cmd+,` opens preferences.
 
 If the extension is missing, toggle it, reopen Finder windows, and ensure you
-do not have multiple installed/running copies. After installing Office/WPS,
-refresh detection in settings and reopen the Finder menu. App bundle IDs must
-be registered with macOS for detection to succeed.
+do not have multiple installed/running copies. After installing Microsoft Office
+(including Microsoft 365) or WPS, refresh detection in settings and reopen the
+Finder menu. NewToFile checks registered apps first, then checks standard bundle
+names and IDs in `/Applications` and `~/Applications`. If an app installed
+elsewhere is not detected, open it once from Finder and try again.
 
 An external `newtofile://` request only prefills the visible form; it does not
 write a file until the user confirms creation. The main app/helper are not App
@@ -104,9 +106,9 @@ the app. Optionally remove that preferences directory; keep created documents.
 
 [MIT](LICENSE), copyright logdns. Bundled dependency notices are preserved in
 `Resources/ThirdParty`. See [CONTRIBUTING](CONTRIBUTING.md), [CHANGELOG](CHANGELOG.md),
-[security review](docs/security-audit.md), [v0.2.3 scoped review](docs/security-review-0.2.3.md),
+[security review](docs/security-audit.md), [v0.2.4 scoped review](docs/security-review-0.2.4.md),
 and [SECURITY](SECURITY.md).
 
 [Version 0.2.1 validation record](docs/validation.md)
 
-[Self-signing policy and fingerprint](docs/self-signing.md) · [v0.2.3 validation](docs/validation-0.2.3.md)
+[Self-signing policy and fingerprint](docs/self-signing.md) · [v0.2.4 validation](docs/validation-0.2.4.md)

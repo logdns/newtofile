@@ -72,7 +72,9 @@ activation on a clean machine. Keep credentials outside the repository.
 Update `internal/appui/model.go`, both bundle plists, and `CHANGELOG.md` together.
 Commit the reviewed source, tag it, and publish a release from that exact tag.
 Attach ZIPs, DMGs, and `SHA256SUMS.txt`; GitHub supplies source archives.
-Use a pre-release for unnotarized preview builds and state known validation gaps.
+Mark unnotarized builds as previews in the title and notes, and state known
+validation gaps. The current public preview can be marked Latest so the
+repository's standard download link resolves to it.
 Do not reuse a published version/tag for different binaries. Download the
 uploaded assets into a disposable directory and verify their checksums.
 
@@ -88,7 +90,7 @@ SIGN_TIMESTAMP=none DIST_DIR=dist/0.2.2 ./scripts/package.sh
 
 Each self-signed release must use a fresh version-specific certificate identity;
 never reuse another project's identity or replace bytes under an existing tag.
-The v0.2.3 public certificate and fingerprint are documented separately in
+The release public certificates and fingerprints are documented in
 `docs/self-signing.md`.
 
 The keychain must be unlocked by its owner. Do not store the keychain password,

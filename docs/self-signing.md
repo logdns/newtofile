@@ -1,5 +1,17 @@
 # NewToFile Certificate Self-Signing
 
+## v0.2.4 Identity
+
+v0.2.4 uses the dedicated `NewToFile macOS Self-Signed Release v0.2.4`
+identity. Its public certificate is
+[NewToFile-SelfSigned-0.2.4.pem](signing/NewToFile-SelfSigned-0.2.4.pem), with
+SHA-256 fingerprint:
+
+`F4:83:D7:B4:7D:80:0A:7F:35:6E:F6:51:A8:34:C3:2B:0F:17:CD:93:02:4B:9F:6B:34:5C:ED:35:EF:5F:D4:86`
+
+Earlier certificates and release assets are unchanged. This identity does not
+establish Apple publisher trust or notarization.
+
 ## v0.2.3 Identity Rotation
 
 v0.2.3 uses a new, version-specific local signing identity:

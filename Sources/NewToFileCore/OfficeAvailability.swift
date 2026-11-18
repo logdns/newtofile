@@ -7,19 +7,26 @@ public struct OfficeAvailability {
     public let wps: Bool
 
     public init() {
-        let workspace = NSWorkspace.shared
-        func installed(_ identifiers: [String]) -> Bool {
-            identifiers.contains { workspace.urlForApplication(withBundleIdentifier: $0) != nil }
-        }
-        wps = installed(["com.kingsoft.wpsoffice.mac", "com.kingsoft.wpsoffice.mac.global", "com.kingsoft.wpsoffice.mac.cn"])
-            || ["/Applications/wpsoffice.app", "/Applications/WPS Office.app",
-                NSHomeDirectory() + "/Applications/wpsoffice.app",
-                NSHomeDirectory() + "/Applications/WPS Office.app"].contains {
-                    FileManager.default.fileExists(atPath: $0)
+        self.init(applicationDirectories: FileManager.default.urls(
+            for: .applicationDirectory, in: [.localDomainMask, .userDomainMask]
+        )) { NSWorkspace.shared.urlForApplication(withBundleIdentifier: $0) != nil }
+    }
+
+    init(applicationDirectories: [URL], isRegistered: (String) -> Bool) {
+        func installed(_ identifiers: [String], bundleNames: [String]) -> Bool {
+            identifiers.contains(where: isRegistered) || applicationDirectories.contains { directory in
+                bundleNames.contains { name in
+                    let url = directory.appendingPathComponent(name, isDirectory: true)
+                    guard let identifier = Bundle(url: url)?.bundleIdentifier else { return false }
+                    return identifiers.contains(identifier)
                 }
-        word = installed(["com.microsoft.Word"])
-        excel = installed(["com.microsoft.Excel"])
-        powerpoint = installed(["com.microsoft.Powerpoint"])
+            }
+        }
+        word = installed(["com.microsoft.Word"], bundleNames: ["Microsoft Word.app"])
+        excel = installed(["com.microsoft.Excel"], bundleNames: ["Microsoft Excel.app"])
+        powerpoint = installed(["com.microsoft.Powerpoint"], bundleNames: ["Microsoft PowerPoint.app"])
+        wps = installed(["com.kingsoft.wpsoffice.mac", "com.kingsoft.wpsoffice.mac.global", "com.kingsoft.wpsoffice.mac.cn"],
+                        bundleNames: ["wpsoffice.app", "WPS Office.app"])
     }
 
     public var availableKinds: [FileKind] {

@@ -23,7 +23,7 @@ type Actions struct {
 	PreferencesChanged func()
 }
 
-const Version = "0.2.3"
+const Version = "0.2.4"
 
 type Model struct {
 	Preferences

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.4 - 2026-11-18
+
+- Detect Microsoft Word, Excel, and PowerPoint in standard Applications folders
+  even when macOS has not registered them yet.
+- Keep Microsoft Office formats tied to the corresponding app and preserve WPS
+  support for all three formats.
+
 ## 0.2.3 - 2026-10-17
 
 - Add a native About section with clickable GitHub project and official website links.
